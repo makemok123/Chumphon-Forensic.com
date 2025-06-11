@@ -17,6 +17,15 @@ body {
     /* font-size ถูกควบคุมโดย html element แล้ว */
 }
 
+/* General image styling to ensure they fit their containers by default */
+img {
+    max-width: 100%; /* Ensure images don't overflow their parent container */
+    height: auto;    /* Maintain aspect ratio when scaling width */
+    display: block;  /* Removes extra space below images and allows margin auto for centering */
+    margin-left: auto; /* Center block images horizontally by default */
+    margin-right: auto;/* Center block images horizontally by default */
+}
+
 header {
     background-color: rgb(33, 196, 250); /* เปลี่ยนสีพื้นหลังเป็นสีฟ้าอ่อน */
     color: white;
@@ -302,13 +311,6 @@ footer {
         font-size: 200%; /* Restore larger font size for desktop */
     }
 
-    /* General image styling for desktop to ensure they fit their containers */
-    img {
-        max-width: 100%; /* Ensure images don't overflow their parent container */
-        height: auto;    /* Maintain aspect ratio when scaling width */
-        display: block;  /* Removes extra space below images and allows margin auto for centering */
-    }
-
     header {
         position: fixed; /* Restore fixed header */
         flex-direction: row;
@@ -323,6 +325,7 @@ footer {
 
     .header-logo {
         margin-right: 20px; /* 10px * 2 */
+        margin-left: 0; /* Override global auto margin for left alignment in desktop header */
         margin-bottom: 0; /* Remove mobile margin-bottom */
     }
 
