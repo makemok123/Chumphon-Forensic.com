@@ -63,22 +63,37 @@ nav ul {
 
 nav ul li {
     display: block; /* Mobile-first: menu items as blocks */
+    padding: 0; /* Remove padding from li, will be handled by a */
     margin-right: 0;
-    padding: 20px 0; /* Mobile-first: 10px * 2 */
-    border-bottom: 2px solid rgba(255, 255, 255, 0.2); /* Mobile-first: 1px * 2 */
+    border-bottom: 2px solid rgba(255, 255, 255, 0.15); /* Slightly softer separator for mobile */
 }
 nav ul li a {
     color: white;
     text-decoration: none;
     font-weight: bold;
+    display: block; /* Ensure 'a' is block for padding and full-width touch */
+    padding: 20px; /* Consistent padding for mobile */
+    transition: background-color 0.2s ease-in-out, filter 0.2s ease-in-out;
 }
 
 nav ul li:last-child { /* เอา margin-right ของ li สุดท้ายออก */
     border-bottom: none; /* Mobile-first: remove border from last item */
 }
 
+/* Individual background colors for menu items */
+nav ul li:nth-child(1) a { background-color: #28a745; } /* 1. หน้าหลัก - Green */
+nav ul li:nth-child(2) a { background-color: #6f42c1; } /* 2. เกี่ยวกับเรา - Purple */
+nav ul li:nth-child(3) a { background-color: #fd7e14; } /* 3. บริการ - Orange */
+nav ul li:nth-child(4) a { background-color: #dc3545; } /* 4. จัดซื้อจัดจ้าง - Red */
+nav ul li:nth-child(5) a { background-color: #20c997; } /* 5. กิจกรรม/ผลงาน - Teal/Mint Green */
+nav ul li:nth-child(6) a { background-color: #6610f2; } /* 6. ตรวจสอบประวัติออนไลน์ - Indigo */
+nav ul li:nth-child(7) a { background-color: #6c757d; } /* 7. ประเมินคุณธรรมฯ - Gray */
+nav ul li:nth-child(8) a { background-color: #343a40; } /* 8. ติดต่อเรา - Dark Gray */
+
+
 nav ul li a:hover {
-    text-decoration: underline;
+    text-decoration: none; /* Remove underline on hover when background changes */
+    filter: brightness(120%); /* Lighten the button on hover */
 }
 
 main {
@@ -257,13 +272,26 @@ footer {
 
     nav ul li {
         display: inline-block; /* Restore inline display for menu items */
-        padding: 0;
-        margin-right: 40px; /* 20px * 2 */
+        /* padding: 0; -- Already set in base */
+        margin-right: 10px; /* Adjust margin between li items for desktop */
         border-bottom: none; /* Remove mobile border */
     }
 
     nav ul li:last-child {
         margin-right: 0;
+    }
+
+    nav ul li a {
+        padding: 12px 20px; /* Custom padding for desktop buttons */
+        border-radius: 8px; /* Rounded corners for desktop buttons */
+        margin-bottom: 5px; /* Space if items wrap */
+        margin-top: 5px;    /* Space if items wrap */
+        transition: background-color 0.2s ease-in-out, filter 0.2s ease-in-out, transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    }
+    nav ul li a:hover {
+        /* filter: brightness(120%); -- Inherited from base hover */
+        transform: translateY(-2px); /* Slight lift on hover */
+        box-shadow: 0 4px 8px rgba(0,0,0,0.15); /* Add subtle shadow on hover */
     }
 
     main {
