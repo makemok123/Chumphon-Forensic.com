@@ -3,6 +3,7 @@ body {
     margin: 0;
     padding: 0;
     scroll-behavior: smooth; /* เพิ่มความนุ่มนวลในการเลื่อนหน้า */
+    overflow-x: hidden; /* ป้องกัน horizontal scrollbar ที่อาจเกิดจาก animation */
 }
 
 header {
@@ -47,6 +48,7 @@ section {
     padding: 60px 20px; /* เพิ่ม padding ให้แต่ละ section */
     min-height: 80vh; /* กำหนดความสูงขั้นต่ำให้แต่ละ section เพื่อให้เห็นการเลื่อน */
     border-bottom: 1px solid #eee;
+    overflow: hidden; /* ป้องกัน content ที่ transform ออกนอก section */
 }
 
 #home {
@@ -75,3 +77,22 @@ footer {
     background-color: #333;
     color: white;
 }
+
+/* --- Added for slide-up animation --- */
+.animatable-content {
+    opacity: 0;
+    transform: translateY(30px); /* เริ่มต้นจากด้านล่างเล็กน้อย */
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    transition-delay: 0.2s; /* เพิ่ม delay เล็กน้อยเพื่อให้ดูสวยงามขึ้น */
+}
+
+.animatable-content.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Optional: Stagger animation for multiple elements */
+.animatable-content.delay-1 { transition-delay: 0.3s; }
+.animatable-content.delay-2 { transition-delay: 0.4s; }
+.animatable-content.delay-3 { transition-delay: 0.5s; }
+/* --- End of added styles --- */

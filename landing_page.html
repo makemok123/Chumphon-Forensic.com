@@ -21,21 +21,21 @@
 
     <main>
         <section id="home">
-            <h1>ยินดีต้อนรับสู่หน้าหลัก</h1>
-            <p>นี่คือส่วนของหน้าหลัก ที่คุณสามารถใส่เนื้อหาต้อนรับหรือข้อมูลสำคัญได้</p>
-            <p>เลื่อนลงเพื่อดูส่วนอื่นๆ หรือคลิกที่เมนูด้านบน</p>
+            <h1 class="animatable-content">ยินดีต้อนรับสู่หน้าหลัก</h1>
+            <p class="animatable-content delay-1">นี่คือส่วนของหน้าหลัก ที่คุณสามารถใส่เนื้อหาต้อนรับหรือข้อมูลสำคัญได้</p>
+            <p class="animatable-content delay-2">เลื่อนลงเพื่อดูส่วนอื่นๆ หรือคลิกที่เมนูด้านบน</p>
         </section>
 
         <section id="about">
-            <h2>เกี่ยวกับเรา</h2>
-            <p>ในส่วนนี้ คุณสามารถบอกเล่าเรื่องราวของธุรกิจหรือองค์กรของคุณได้</p>
-            <p>เช่น ประวัติความเป็นมา, วิสัยทัศน์, พันธกิจ เป็นต้น</p>
+            <h2 class="animatable-content">เกี่ยวกับเรา</h2>
+            <p class="animatable-content delay-1">ในส่วนนี้ คุณสามารถบอกเล่าเรื่องราวของธุรกิจหรือองค์กรของคุณได้</p>
+            <p class="animatable-content delay-2">เช่น ประวัติความเป็นมา, วิสัยทัศน์, พันธกิจ เป็นต้น</p>
         </section>
 
         <section id="services">
-            <h2>บริการของเรา</h2>
-            <p>แสดงรายการบริการหรือผลิตภัณฑ์ที่คุณนำเสนอ</p>
-            <ul>
+            <h2 class="animatable-content">บริการของเรา</h2>
+            <p class="animatable-content delay-1">แสดงรายการบริการหรือผลิตภัณฑ์ที่คุณนำเสนอ</p>
+            <ul class="animatable-content delay-2">
                 <li>บริการ A</li>
                 <li>บริการ B</li>
                 <li>บริการ C</li>
@@ -43,16 +43,52 @@
         </section>
 
         <section id="contact">
-            <h2>ติดต่อเรา</h2>
-            <p>ให้ข้อมูลช่องทางการติดต่อ เช่น ที่อยู่, เบอร์โทรศัพท์, อีเมล หรือแบบฟอร์มติดต่อ</p>
-            <p>อีเมล: example@example.com</p>
-            <p>โทรศัพท์: 08X-XXX-XXXX</p>
+            <h2 class="animatable-content">ติดต่อเรา</h2>
+            <p class="animatable-content delay-1">ให้ข้อมูลช่องทางการติดต่อ เช่น ที่อยู่, เบอร์โทรศัพท์, อีเมล หรือแบบฟอร์มติดต่อ</p>
+            <p class="animatable-content delay-2">อีเมล: example@example.com</p>
+            <p class="animatable-content delay-3">โทรศัพท์: 08X-XXX-XXXX</p>
         </section>
     </main>
 
     <footer>
         <p>&copy; 2023 ชื่อเว็บไซต์ของคุณ. สงวนลิขสิทธิ์.</p>
     </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const sections = document.querySelectorAll('section');
+
+            const observerOptions = {
+                root: null, // relative to document viewport
+                rootMargin: '0px',
+                threshold: 0.1 // 10% of the section is visible
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const animatableElements = entry.target.querySelectorAll('.animatable-content');
+                        animatableElements.forEach(el => {
+                            el.classList.add('is-visible');
+                        });
+                        // Optional: Unobserve the section after animation to prevent re-triggering
+                        // observer.unobserve(entry.target);
+                    } else {
+                        // Optional: Reset animation if section scrolls out of view
+                        // This might be desired if you want the animation to replay every time
+                        // const animatableElements = entry.target.querySelectorAll('.animatable-content.is-visible');
+                        // animatableElements.forEach(el => {
+                        //     el.classList.remove('is-visible');
+                        // });
+                    }
+                });
+            }, observerOptions);
+
+            sections.forEach(section => {
+                observer.observe(section);
+            });
+        });
+    </script>
 
 </body>
 </html>
