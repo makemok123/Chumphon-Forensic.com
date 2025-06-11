@@ -18,6 +18,10 @@
                 <li><a href="#home">หน้าหลัก</a></li>
                 <li><a href="#about">เกี่ยวกับเรา</a></li>
                 <li><a href="#services">บริการ</a></li>
+                <li><a href="#procurement">จัดซื้อจัดจ้าง</a></li>
+                <li><a href="#activities">กิจกรรม/ผลงาน</a></li>
+                <li><a href="#background-check">ตรวจสอบประวัติออนไลน์</a></li>
+                <li><a href="#ita">ประเมินคุณธรรมและความโปร่งใส</a></li>
                 <li><a href="#contact">ติดต่อเรา</a></li>
             </ul>
         </nav>
@@ -99,6 +103,30 @@
             </ul>
         </section>
 
+        <section id="procurement">
+            <h2 class="animatable-content">จัดซื้อจัดจ้าง</h2>
+            <p class="animatable-content delay-1">รายละเอียดเกี่ยวกับการจัดซื้อจัดจ้างของหน่วยงาน...</p>
+            <!-- เพิ่มเนื้อหาเกี่ยวกับการจัดซื้อจัดจ้างที่นี่ -->
+        </section>
+
+        <section id="activities">
+            <h2 class="animatable-content">กิจกรรม/ผลงาน</h2>
+            <p class="animatable-content delay-1">ภาพกิจกรรมและผลงานเด่นของหน่วยงาน...</p>
+            <!-- เพิ่มเนื้อหาเกี่ยวกับกิจกรรมและผลงานที่นี่ -->
+        </section>
+
+        <section id="background-check">
+            <h2 class="animatable-content">ตรวจสอบประวัติออนไลน์</h2>
+            <p class="animatable-content delay-1">ลิงก์หรือข้อมูลสำหรับการตรวจสอบประวัติออนไลน์...</p>
+            <!-- เพิ่มเนื้อหาหรือลิงก์สำหรับการตรวจสอบประวัติที่นี่ -->
+        </section>
+
+        <section id="ita">
+            <h2 class="animatable-content">ประเมินคุณธรรมและความโปร่งใส (ITA)</h2>
+            <p class="animatable-content delay-1">ข้อมูลเกี่ยวกับการประเมินคุณธรรมและความโปร่งใสของหน่วยงาน...</p>
+            <!-- เพิ่มเนื้อหาเกี่ยวกับการประเมิน ITA ที่นี่ -->
+        </section>
+
         <section id="contact">
             <h2 class="animatable-content">ติดต่อเรา</h2>
             <p class="animatable-content delay-1">ให้ข้อมูลช่องทางการติดต่อ เช่น ที่อยู่, เบอร์โทรศัพท์, อีเมล หรือแบบฟอร์มติดต่อ</p>
@@ -149,7 +177,6 @@
             const accordionHeaders = document.querySelectorAll('.accordion-header');
             accordionHeaders.forEach(header => {
                 header.addEventListener('click', () => {
-                    const accordionItem = header.parentElement;
                     const accordionContent = header.nextElementSibling;
 
                     // Toggle active class for styling (optional)

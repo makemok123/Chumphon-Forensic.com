@@ -1,15 +1,26 @@
+html {
+    font-size: 200%; /* ขยายขนาด font พื้นฐาน 200% (เช่น จาก 16px เป็น 32px) */
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box; /* ทำให้ padding และ border ไม่เพิ่มขนาดของ element */
+}
+
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
     scroll-behavior: smooth; /* เพิ่มความนุ่มนวลในการเลื่อนหน้า */
     overflow-x: hidden; /* ป้องกัน horizontal scrollbar ที่อาจเกิดจาก animation */
+    /* font-size ถูกควบคุมโดย html element แล้ว */
 }
 
 header {
     background-color: rgb(33, 196, 250); /* เปลี่ยนสีพื้นหลังเป็นสีฟ้าอ่อน */
     color: white;
-    padding: 15px 20px; /* Mobile-first padding */
+    padding: 30px 40px; /* Mobile-first padding (15px*2, 20px*2) */
     position: static; /* Mobile-first: header not fixed */
     width: 100%;
     top: 0;
@@ -18,7 +29,6 @@ header {
     flex-direction: column; /* Mobile-first: stack branding and nav */
     align-items: center; /* จัดให้อยู่กึ่งกลางแนวตั้ง */
     /* justify-content: space-between; /* Will be restored for larger screens */
-    box-sizing: border-box; /* เพิ่มเพื่อให้ padding ไม่ทำให้ width เกิน 100% */
 }
 
 .header-branding { /* สไตล์สำหรับกลุ่มโลโก้และข้อความ */
@@ -28,9 +38,9 @@ header {
 }
 
 .header-logo { /* สไตล์สำหรับโลโก้ */
-    height: 40px; /* กำหนดความสูงของโลโก้ตามต้องการ */
-    margin-right: 10px; /* ระยะห่างระหว่างโลโก้กับข้อความ */
-    margin-bottom: 10px; /* Mobile-first: space below logo when stacked */
+    height: 80px; /* 40px * 2 */
+    margin-right: 20px; /* 10px * 2 (จะถูก override ใน mobile first) */
+    margin-bottom: 20px; /* Mobile-first: 10px * 2 */
 }
 
 .header-title { /* สไตล์สำหรับข้อความชื่อ */
@@ -41,7 +51,7 @@ header {
 
 nav {
     width: 100%; /* Mobile-first: nav takes full width */
-    margin-top: 15px; /* Mobile-first: space between branding and nav */
+    margin-top: 30px; /* Mobile-first: 15px * 2 */
 }
 
 nav ul {
@@ -54,8 +64,8 @@ nav ul {
 nav ul li {
     display: block; /* Mobile-first: menu items as blocks */
     margin-right: 0;
-    padding: 10px 0; /* Mobile-first: padding for touch targets */
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2); /* Mobile-first: separator */
+    padding: 20px 0; /* Mobile-first: 10px * 2 */
+    border-bottom: 2px solid rgba(255, 255, 255, 0.2); /* Mobile-first: 1px * 2 */
 }
 nav ul li a {
     color: white;
@@ -72,13 +82,13 @@ nav ul li a:hover {
 }
 
 main {
-    padding-top: 20px; /* Mobile-first: padding for main content when header is static */
+    padding-top: 40px; /* Mobile-first: 20px * 2 */
 }
 
 section {
-    padding: 60px 20px; /* เพิ่ม padding ให้แต่ละ section */
+    padding: 120px 40px; /* 60px*2, 20px*2 */
     min-height: 80vh; /* กำหนดความสูงขั้นต่ำให้แต่ละ section เพื่อให้เห็นการเลื่อน */
-    border-bottom: 1px solid #eee;
+    border-bottom: 2px solid #eee; /* 1px * 2 */
     overflow: hidden; /* ป้องกัน content ที่ transform ออกนอก section */
 }
 
@@ -86,9 +96,9 @@ section {
     background-color: #f4f4f4; /* สีพื้นหลังเดิม */
     display: flex;
     flex-direction: column; /* Mobile-first: stack content */
-    align-items: center; /* Mobile-first: center items */
-    gap: 20px; /* Mobile-first: gap between items */
-    padding-top: 40px; /* Adjusted padding */
+    align-items: center;
+    gap: 40px; /* Mobile-first: 20px * 2 */
+    padding-top: 80px; /* Adjusted padding: 40px * 2 */
     text-align: center; /* Mobile-first: center text */
 }
 
@@ -128,11 +138,11 @@ section {
 }
 
 .commander-image {
-    width: 180px; /* กำหนดความกว้างของรูปภาพตามต้องการ */
+    width: 360px; /* 180px * 2 */
     height: auto; /* รักษาสัดส่วนของรูปภาพ */
-    border-radius: 8px; /* ทำให้มุมรูปภาพโค้งมน (ถ้าต้องการ) */
-    border: 2px solid #ddd; /* เพิ่มขอบให้รูปภาพ (ถ้าต้องการ) */
-    margin-bottom: 10px; /* ระยะห่างใต้รูปภาพ */
+    border-radius: 16px; /* 8px * 2 */
+    border: 4px solid #ddd; /* 2px * 2 */
+    margin-bottom: 20px; /* 10px * 2 */
 }
 
 .commander-caption {
@@ -143,10 +153,10 @@ section {
 
 /* Styles for the Royal Thai Police logo */
 .rtp-logo {
-    display: block; /* ทำให้โลโก้เป็น block element เพื่อให้ margin auto ทำงาน */
-    max-width: 190px; /* ขยายขนาดเป็น 2 เท่า */
+    display: block;
+    max-width: 380px; /* 190px * 2 */
     height: auto; /* รักษาสัดส่วนของรูปภาพ */
-    margin: 10px auto; /* Mobile-first: center logo */
+    margin: 20px auto; /* Mobile-first: 10px * 2 */
 }
 
 h1, h2 {
@@ -155,7 +165,7 @@ h1, h2 {
 
 footer {
     text-align: center;
-    padding: 20px;
+    padding: 40px; /* 20px * 2 */
     background-color: #333;
     color: white;
 }
@@ -163,14 +173,14 @@ footer {
 /* --- Accordion Styles --- */
 .accordion {
     width: 100%;
-    max-width: 800px; /* กำหนดความกว้างสูงสุดของ accordion ตามต้องการ */
-    margin: 20px auto; /* จัดให้อยู่กึ่งกลางและมีระยะห่างบนล่าง */
+    max-width: 1600px; /* 800px * 2 */
+    margin: 40px auto; /* 20px * 2 */
 }
 
 .accordion-item {
-    border: 1px solid #ddd;
-    margin-bottom: 5px; /* ระยะห่างระหว่าง item */
-    border-radius: 4px;
+    border: 2px solid #ddd; /* 1px * 2 */
+    margin-bottom: 10px; /* 5px * 2 */
+    border-radius: 8px; /* 4px * 2 */
     overflow: hidden; /* สำหรับ border-radius */
 }
 
@@ -178,7 +188,7 @@ footer {
     background-color: #e9e9e9;
     color: #333;
     cursor: pointer;
-    padding: 15px 20px;
+    padding: 30px 40px; /* 15px*2, 20px*2 */
     width: 100%;
     text-align: left;
     border: none;
@@ -194,16 +204,16 @@ footer {
 }
 
 .accordion-content {
-    padding: 15px 20px;
+    padding: 30px 40px; /* 15px*2, 20px*2 */
     background-color: white;
     display: none; /* ซ่อนเนื้อหาเริ่มต้น */
-    border-top: 1px solid #ddd;
+    border-top: 2px solid #ddd; /* 1px * 2 */
 }
 
 /* --- Added for slide-up animation --- */
 .animatable-content {
     opacity: 0;
-    transform: translateY(30px); /* เริ่มต้นจากด้านล่างเล็กน้อย */
+    transform: translateY(60px); /* 30px * 2 */
     transition: opacity 0.6s ease-out, transform 0.6s ease-out;
     transition-delay: 0.2s; /* เพิ่ม delay เล็กน้อยเพื่อให้ดูสวยงามขึ้น */
 }
@@ -227,7 +237,7 @@ footer {
         position: fixed; /* Restore fixed header */
         flex-direction: row;
         justify-content: space-between;
-        padding: 0.5em 20px; /* Restore original padding */
+        padding: 0.5em 40px; /* 0.5em (scales with html font-size), 20px*2 */
     }
 
     .header-branding {
@@ -236,7 +246,7 @@ footer {
     }
 
     .header-logo {
-        margin-right: 10px; /* Restore original margin */
+        margin-right: 20px; /* 10px * 2 */
         margin-bottom: 0; /* Remove mobile margin-bottom */
     }
 
@@ -248,7 +258,7 @@ footer {
     nav ul li {
         display: inline-block; /* Restore inline display for menu items */
         padding: 0;
-        margin-right: 20px; /* Restore original margin */
+        margin-right: 40px; /* 20px * 2 */
         border-bottom: none; /* Remove mobile border */
     }
 
@@ -257,16 +267,22 @@ footer {
     }
 
     main {
-        padding-top: 70px; /* Adjust padding for fixed header (header height ~56px) */
+        /* Recalculated:
+           New header logo height: 80px.
+           New header padding (tablet/desktop): 0.5em (which is 0.5 * 32px = 16px) top/bottom. So 16px * 2 = 32px for vertical padding.
+           Total header height approx: 80px (logo) + 32px (padding) = 112px.
+           Original buffer was 70px (main padding) - 56px (header height) = 14px. Scaled buffer = 14px * 2 = 28px.
+           New main padding-top = 112px + 28px = 140px. */
+        padding-top: 140px;
     }
 
     #home {
         flex-direction: row; /* Restore side-by-side layout */
         justify-content: space-between;
         align-items: flex-start;
-        text-align: left; /* Restore left alignment for main content */
-        gap: 30px; /* Restore original gap */
-        padding-top: 60px; /* Restore original padding */
+        text-align: left;
+        gap: 60px; /* 30px * 2 */
+        padding-top: 120px; /* 60px * 2 */
     }
 
     .home-main-content {
@@ -274,7 +290,7 @@ footer {
         text-align: left;
     }
      .rtp-logo {
-        margin: 10px 0; /* Adjust logo margin for left alignment */
+        margin: 20px 0; /* 10px * 2 */
     }
 
     .home-commander-section {
