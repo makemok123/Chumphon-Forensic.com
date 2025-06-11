@@ -187,12 +187,26 @@ footer {
 
 /* --- Accordion Styles --- */
 .accordion {
-    width: 100%;
+    /* width: 100%; -- This will be handled by flex parent */
     max-width: 1600px; /* 800px * 2 */
-    margin: 40px auto; /* 20px * 2 */
+    /* margin: 40px auto; -- This will be handled by .accordion-with-controls */
 }
 
-.accordion-item {
+.accordion-with-controls {
+    display: flex;
+    align-items: flex-start;
+    gap: 20px; /* 10px * 2, space between accordion and button */
+    width: fit-content; /* Make wrapper only as wide as its content */
+    margin: 40px auto; /* Center the wrapper, original accordion top/bottom margin */
+}
+
+.accordion-with-controls .accordion {
+    flex-grow: 1; /* Accordion takes available space */
+    margin: 0; /* Remove original margin */
+    max-width: 1600px; /* Retain its max-width */
+}
+
+.accordion-item { /* This style remains the same */
     border: 2px solid #ddd; /* 1px * 2 */
     margin-bottom: 10px; /* 5px * 2 */
     border-radius: 8px; /* 4px * 2 */
@@ -223,6 +237,26 @@ footer {
     background-color: white;
     display: none; /* ซ่อนเนื้อหาเริ่มต้น */
     border-top: 2px solid #ddd; /* 1px * 2 */
+}
+
+/* --- Styles for the new Collapse All Button (per accordion) --- */
+.accordion-collapse-trigger {
+    flex-shrink: 0; /* Prevent button from shrinking */
+    padding: 20px 40px; /* เพิ่ม padding (10px*2, 20px*2) */
+    font-size: 1em; /* ขนาดตัวอักษร */
+    cursor: pointer; /* เปลี่ยน cursor เป็น pointer */
+    background-color: #007bff; /* สีพื้นหลัง (ตามสี header) */
+    color: white; /* สีตัวอักษร */
+    border: none; /* ไม่มีขอบ */
+    border-radius: 10px; /* มุมโค้งมน (5px * 2) - same as old button */
+    transition: background-color 0.3s ease; /* เพิ่ม transition */
+}
+.accordion-collapse-trigger:hover { background-color: #0056b3; } /* สีเข้มขึ้นเมื่อ hover */
+
+/* Styles for the sticky "Collapse All" button */
+.collapse-trigger-sticky {
+    position: fixed;
+    z-index: 900; /* Below header (1000) but above most content */
 }
 
 /* --- Added for slide-up animation --- */
