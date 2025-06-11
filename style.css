@@ -9,19 +9,39 @@ body {
 header {
     background-color: #333;
     color: white;
-    padding: 1em 0;
-    text-align: center;
+    padding: 0.5em 20px; /* ปรับ padding ให้เหมาะสม */
+    /* text-align: center;  เอาออกเนื่องจากใช้ flexbox */
     position: fixed; /* ทำให้ header อยู่กับที่ด้านบน */
     width: 100%;
     top: 0;
     z-index: 1000; /* ทำให้ header อยู่เหนือเนื้อหาอื่น */
+    display: flex; /* เพิ่ม flexbox */
+    align-items: center; /* จัดให้อยู่กึ่งกลางแนวตั้ง */
+    justify-content: space-between; /* จัดให้ branding อยู่ซ้าย และ nav อยู่ขวา */
+    box-sizing: border-box; /* เพิ่มเพื่อให้ padding ไม่ทำให้ width เกิน 100% */
+}
+
+.header-branding { /* สไตล์สำหรับกลุ่มโลโก้และข้อความ */
+    display: flex;
+    align-items: center;
+}
+
+.header-logo { /* สไตล์สำหรับโลโก้ */
+    height: 40px; /* กำหนดความสูงของโลโก้ตามต้องการ */
+    margin-right: 10px; /* ระยะห่างระหว่างโลโก้กับข้อความ */
+}
+
+.header-title { /* สไตล์สำหรับข้อความชื่อ */
+    font-size: 1.1em; /* ขนาดตัวอักษรตามต้องการ */
+    font-weight: bold;
+    color: white; /* ทำให้ข้อความมองเห็นบนพื้นหลังสีเข้ม */
 }
 
 nav ul {
     list-style-type: none;
     padding: 0;
     margin: 0;
-    text-align: center;
+    text-align: center; /* ยังคงให้ li อยู่ตรงกลางภายใน nav */
 }
 
 nav ul li {
@@ -35,13 +55,17 @@ nav ul li a {
     font-weight: bold;
 }
 
+nav ul li:last-child { /* เอา margin-right ของ li สุดท้ายออก */
+    margin-right: 0;
+}
+
 nav ul li a:hover {
     text-decoration: underline;
 }
 
 /* เพิ่ม padding-top ให้ main เพื่อไม่ให้เนื้อหาถูก header บัง */
 main {
-    padding-top: 70px; /* ความสูงของ header โดยประมาณ */
+    padding-top: 70px; /* ความสูงของ header โดยประมาณ, อาจจะต้องปรับค่านี้ถ้า header สูงขึ้น */
 }
 
 section {
