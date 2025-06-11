@@ -1,5 +1,5 @@
 html {
-    font-size: 200%; /* ขยายขนาด font พื้นฐาน 200% (เช่น จาก 16px เป็น 32px) */
+    font-size: 100%; /* Default font size for mobile/tablet, overridden for desktop */
 }
 
 *,
@@ -104,7 +104,6 @@ section {
     padding: 120px 40px; /* 60px*2, 20px*2 */
     min-height: 80vh; /* กำหนดความสูงขั้นต่ำให้แต่ละ section เพื่อให้เห็นการเลื่อน */
     border-bottom: 2px solid #eee; /* 1px * 2 */
-    overflow: hidden; /* ป้องกัน content ที่ transform ออกนอก section */
 }
 
 #home {
@@ -194,16 +193,29 @@ footer {
 
 .accordion-with-controls {
     display: flex;
-    align-items: flex-start;
+    /* Default to mobile/tablet view: sticky, column layout */
+    flex-direction: column;
+    align-items: center; /* Center items in the column */
     gap: 20px; /* 10px * 2, space between accordion and button */
-    width: fit-content; /* Make wrapper only as wide as its content */
-    margin: 40px auto; /* Center the wrapper, original accordion top/bottom margin */
+    /* margin: 40px auto; /* This was for desktop block centering, not for sticky */
+
+    /* Sticky behavior for mobile/tablet by default */
+    position: -webkit-sticky; /* Safari */
+    position: sticky;
+    top: 0; /* Stick to the top of the viewport */
+    z-index: 950; /* Ensure it's above other scrolled content */
+    background-color: #f8f9fa; /* Light background for the sticky bar */
+    width: 100%; /* Make the sticky bar full width */
+    padding: 10px 15px; /* Vertical and horizontal padding for the bar */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Subtle shadow for elevation */
+    margin: 0; /* Override any potential inherited margin that could interfere with sticky */
 }
 
 .accordion-with-controls .accordion {
     flex-grow: 1; /* Accordion takes available space */
     margin: 0; /* Remove original margin */
     max-width: 1600px; /* Retain its max-width */
+    order: 2; /* Accordion appears below button in mobile/tablet default column layout */
 }
 
 .accordion-item { /* This style remains the same */
@@ -243,6 +255,7 @@ footer {
 .accordion-collapse-trigger {
     flex-shrink: 0; /* Prevent button from shrinking */
     padding: 20px 40px; /* เพิ่ม padding (10px*2, 20px*2) */
+    /* margin-top: 0; /* Ensure no extra top margin if it was there before */
     font-size: 1em; /* ขนาดตัวอักษร */
     cursor: pointer; /* เปลี่ยน cursor เป็น pointer */
     background-color: #007bff; /* สีพื้นหลัง (ตามสี header) */
@@ -250,6 +263,7 @@ footer {
     border: none; /* ไม่มีขอบ */
     border-radius: 10px; /* มุมโค้งมน (5px * 2) - same as old button */
     transition: background-color 0.3s ease; /* เพิ่ม transition */
+    order: 1; /* Button appears above accordion in mobile/tablet default column layout */
 }
 .accordion-collapse-trigger:hover { background-color: #0056b3; } /* สีเข้มขึ้นเมื่อ hover */
 
@@ -279,22 +293,22 @@ footer {
 /* --- End of added styles --- */
 
 /* === Media Queries สำหรับ Responsive === */
-/* --- สำหรับมือถือ (ปรับลดขนาด font) --- */
-@media (max-width: 767px) {
-  html {
-    font-size: 100%; /* ลดขนาด font พื้นฐานสำหรับมือถือลงครึ่งหนึ่ง (จาก 200% เป็น 100%) */
-}
+/*
+  Mobile and Tablet styles (up to 1023px) are now primarily handled by the base styles (mobile-first).
+  The media query below is for Desktop (1024px and wider).
+*/
+@media (min-width: 1024px) {
+    html {
+        font-size: 200%; /* Restore larger font size for desktop */
+    }
 
-  /* จัดให้ accordion และ ปุ่ม "ยุบ" อยู่ในแนวตั้ง และกึ่งกลางสำหรับจอ mobile */
-  .accordion-with-controls {
-    flex-direction: column; /* ทำให้ accordion และปุ่มเรียงกันในแนวตั้ง */
-    align-items: center;   /* จัดให้ accordion และปุ่มอยู่กึ่งกลางแนวนอน */
-                           /* ตัว .accordion-with-controls เองยังคงถูกจัดกึ่งกลางหน้าจอด้วย margin: auto และ width: fit-content จากสไตล์เดิม */
-  }
-}
+    /* General image styling for desktop to ensure they fit their containers */
+    img {
+        max-width: 100%; /* Ensure images don't overflow their parent container */
+        height: auto;    /* Maintain aspect ratio when scaling width */
+        display: block;  /* Removes extra space below images and allows margin auto for centering */
+    }
 
-/* --- สำหรับแท็บเล็ต (หน้าจอกว้าง 768px ขึ้นไป) --- */
-@media (min-width: 768px) {
     header {
         position: fixed; /* Restore fixed header */
         flex-direction: row;
@@ -341,6 +355,28 @@ footer {
         box-shadow: 0 4px 8px rgba(0,0,0,0.15); /* Add subtle shadow on hover */
     }
 
+    /* Desktop Accordion: Revert to non-sticky, side-by-side layout */
+    .accordion-with-controls {
+        flex-direction: row; /* Button and accordion side-by-side */
+        align-items: flex-start; /* Align to top */
+        position: static; /* Not sticky */
+        top: auto;
+        z-index: auto;
+        background-color: transparent; /* No special background */
+        width: fit-content; /* Wrap content */
+        padding: 0; /* No special padding for the container */
+        box-shadow: none; /* No shadow */
+        margin: 40px auto; /* Center the block */
+    }
+
+    .accordion-with-controls .accordion-collapse-trigger {
+        order: initial; /* Reset order, default HTML order (button after accordion) */
+    }
+
+    .accordion-with-controls .accordion {
+        order: initial; /* Reset order */
+    }
+
     main {
         /* Recalculated:
            New header logo height: 80px.
@@ -374,8 +410,8 @@ footer {
     }
 }
 
-/* --- สำหรับคอมพิวเตอร์ (หน้าจอกว้าง 1024px ขึ้นไป) --- */
-@media (min-width: 1024px) {
+/* --- Further Desktop refinements (already inside min-width: 1024px from former tablet query) --- */
+/* The following styles were from the original @media (min-width: 1024px) block and are now merged here */
     header .header-title {
         font-size: 1.8em; /* ขยายขนาดชื่อเว็บเล็กน้อย */
     }
@@ -388,4 +424,3 @@ footer {
         flex-basis: 35%; /* กำหนดสัดส่วนความกว้าง */
         margin-top: 0;
     }
-}
