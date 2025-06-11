@@ -65,7 +65,7 @@ nav ul li a:hover {
 
 /* เพิ่ม padding-top ให้ main เพื่อไม่ให้เนื้อหาถูก header บัง */
 main {
-    padding-top: 70px; /* ความสูงของ header โดยประมาณ, อาจจะต้องปรับค่านี้ถ้า header สูงขึ้น */
+    padding-top: 56px; /* ปรับให้ตรงกับความสูงของ header (โลโก้ 40px + padding บนล่าง 0.5em*2) */
 }
 
 section {
@@ -76,7 +76,12 @@ section {
 }
 
 #home {
-    background-color: #f4f4f4;
+    background-color: #f4f4f4; /* สีพื้นหลังเดิม */
+    display: flex; /* เปิดใช้งาน Flexbox */
+    justify-content: space-between; /* จัดช่องว่างระหว่างส่วนซ้ายและขวา */
+    align-items: flex-start; /* จัดให้ส่วนต่างๆ ชิดด้านบน */
+    gap: 30px; /* ระยะห่างระหว่างส่วนซ้ายและขวา */
+    padding-top: 10px; /* กำหนด padding-top เฉพาะสำหรับ #home เป็น 10px */
 }
 
 #about {
@@ -89,6 +94,43 @@ section {
 
 #contact {
     background-color: #bcbcbc;
+}
+
+/* Styles for #home section content */
+.home-main-content {
+    flex: 2; /* ให้ส่วนเนื้อหาหลักใช้พื้นที่มากกว่า */
+    /* สามารถเพิ่ม padding-right ถ้าต้องการระยะห่างเพิ่มเติม */
+}
+
+.home-commander-section {
+    flex: 1; /* ให้ส่วนรูปผู้บังคับบัญชาใช้พื้นที่น้อยกว่า */
+    text-align: center; /* จัดเนื้อหาในส่วนนี้ให้อยู่กึ่งกลาง */
+    /* padding-top: 20px; เอาออกเพื่อให้หัวข้อจัดตำแหน่งกับ h1 ด้านซ้าย */
+}
+
+.home-commander-section h2 {
+    margin-bottom: 15px; /* ระยะห่างใต้หัวข้อ "รูปบังคับบัญชา" */
+    font-size: 1.5em; /* ปรับขนาดตามความเหมาะสม */
+    /* margin-top: 0; เพิ่มเพื่อให้ตรงกับ h1 */
+}
+
+.home-main-content h1,
+.home-commander-section h2 {
+    margin-top: 0; /* ทำให้หัวข้อทั้งสองเริ่มที่ด้านบนสุดของ container */
+}
+
+.commander-image {
+    width: 180px; /* กำหนดความกว้างของรูปภาพตามต้องการ */
+    height: auto; /* รักษาสัดส่วนของรูปภาพ */
+    border-radius: 8px; /* ทำให้มุมรูปภาพโค้งมน (ถ้าต้องการ) */
+    border: 2px solid #ddd; /* เพิ่มขอบให้รูปภาพ (ถ้าต้องการ) */
+    margin-bottom: 10px; /* ระยะห่างใต้รูปภาพ */
+}
+
+.commander-caption {
+    font-size: 0.95em; /* ขนาดตัวอักษรของคำอธิบายใต้ภาพ */
+    color: #555; /* สีตัวอักษรของคำอธิบาย */
+    line-height: 1.4; /* ปรับระยะห่างระหว่างบรรทัดของคำอธิบาย */
 }
 
 h1, h2 {
