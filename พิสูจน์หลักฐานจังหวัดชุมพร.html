@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Landing Page หน้าเดียว</title>
+    <title>พิสูจน์หลักฐาน จังหวัดชุมพร</title>
     <link rel="stylesheet" href="style.css"> <!-- เพิ่มบรรทัดนี้ -->
 </head>
 <body>
@@ -26,13 +26,14 @@
     <main>
         <section id="home">
             <div class="home-main-content">
-                <h1 class="animatable-content">ยินดีต้อนรับสู่พิสูจน์หลักฐาน จังหวัดชุมพร</h1>
-                <p class="animatable-content delay-1">หน่วยงานระดับกองกำกับการ ส่วนงานสนับสนุนป้องกันและปราบปรามอาชญากรรม  </p>
+                                <h1 class="animatable-content">ยินดีต้อนรับสู่พิสูจน์หลักฐาน จังหวัดชุมพร</h1>
+                                <img src="logo.png" alt="โลโก้ สำนักงานตำรวจแห่งชาติ" class="rtp-logo">
+                                <p class="animatable-content delay-1">หน่วยงานระดับกองกำกับการ ส่วนงานสนับสนุนป้องกันและปราบปรามอาชญากรรม  </p>
                 <p class="animatable-content delay-2">สังกัด<br>
                     <a href="https://scdc8.forensic.police.go.th/index.php?tab=main" target="_blank" rel="noopener noreferrer">กองบังคับการ ศูนย์พิสูจน์หลักฐาน8</a> <br>
                     <a href="https://www.forensic.police.go.th/FS/html/main.php" target="_blank" rel="noopener noreferrer">กองบัญชาการ สำนักงานพิสูจน์หลักฐานตำรวจ</a> <br>
                     <a href="https://www.royalthaipolice.go.th/" target="_blank" rel="noopener noreferrer">สำนักงานตำรวจแห่งชาติ</a><br>
-                    <img src="logo.png" alt="โลโก้ สำนักงานตำรวจแห่งชาติ" class="rtp-logo">
+                    
                 </p>
             </div>
             <div class="home-commander-section animatable-content delay-3">
@@ -48,9 +49,44 @@
         </section>
 
         <section id="about">
-            <h2 class="animatable-content">เกี่ยวกับเรา</h2>
-            <p class="animatable-content delay-1">ในส่วนนี้ คุณสามารถบอกเล่าเรื่องราวของธุรกิจหรือองค์กรของคุณได้</p>
-            <p class="animatable-content delay-2">เช่น ประวัติความเป็นมา, วิสัยทัศน์, พันธกิจ เป็นต้น</p>
+            <h2 class="animatable-content" style="text-align: center; margin-bottom: 30px;">เกี่ยวกับเรา</h2>
+            <div class="accordion animatable-content delay-1">
+                <div class="accordion-item">
+                    <button class="accordion-header">ประวัติความเป็นมา</button>
+                    <div class="accordion-content">
+                        <p>ใส่เนื้อหาประวัติความเป็นมาของหน่วยงานที่นี่...</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-header">วิสัยทัศน์</button>
+                    <div class="accordion-content">
+                        <p>ใส่วิสัยทัศน์ของหน่วยงานที่นี่...</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-header">พันธกิจ</button>
+                    <div class="accordion-content">
+                        <p>ใส่พันธกิจของหน่วยงานที่นี่...</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-header">โครงสร้างหน่วยงาน</button>
+                    <div class="accordion-content">
+                        <p>ใส่รายละเอียดโครงสร้างหน่วยงาน หรืออาจจะเป็นรูปภาพโครงสร้างที่นี่...</p>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <button class="accordion-header">ผู้บังคับบัญชา (ระดับ บก. และ บช.)</button>
+                    <div class="accordion-content">
+                        <p><strong>ผู้บังคับบัญชาระดับกองบังคับการ (บก.):</strong><br> - รายชื่อ...</p>
+                        <p><strong>ผู้บังคับบัญชาระดับกองบัญชาการ (บช.):</strong><br> - รายชื่อ...</p>
+                    </div>
+                </div>
+            </div>
         </section>
 
         <section id="services">
@@ -96,7 +132,7 @@
                         // observer.unobserve(entry.target);
                     } else {
                         // Optional: Reset animation if section scrolls out of view
-                        // This might be desired if you want the animation to replay every time
+                        // This might be desired if you want the animation to replay every time.
                         // const animatableElements = entry.target.querySelectorAll('.animatable-content.is-visible');
                         // animatableElements.forEach(el => {
                         //     el.classList.remove('is-visible');
@@ -107,6 +143,20 @@
 
             sections.forEach(section => {
                 observer.observe(section);
+            });
+
+            // Accordion JavaScript
+            const accordionHeaders = document.querySelectorAll('.accordion-header');
+            accordionHeaders.forEach(header => {
+                header.addEventListener('click', () => {
+                    const accordionItem = header.parentElement;
+                    const accordionContent = header.nextElementSibling;
+
+                    // Toggle active class for styling (optional)
+                    header.classList.toggle('active');
+                    // Toggle display of content
+                    accordionContent.style.display = accordionContent.style.display === 'block' ? 'none' : 'block';
+                });
             });
         });
     </script>
