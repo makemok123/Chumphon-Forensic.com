@@ -1,0 +1,77 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    scroll-behavior: smooth; /* เพิ่มความนุ่มนวลในการเลื่อนหน้า */
+}
+
+header {
+    background-color: #333;
+    color: white;
+    padding: 1em 0;
+    text-align: center;
+    position: fixed; /* ทำให้ header อยู่กับที่ด้านบน */
+    width: 100%;
+    top: 0;
+    z-index: 1000; /* ทำให้ header อยู่เหนือเนื้อหาอื่น */
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+}
+
+nav ul li {
+    display: inline;
+    margin-right: 20px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav ul li a:hover {
+    text-decoration: underline;
+}
+
+/* เพิ่ม padding-top ให้ main เพื่อไม่ให้เนื้อหาถูก header บัง */
+main {
+    padding-top: 70px; /* ความสูงของ header โดยประมาณ */
+}
+
+section {
+    padding: 60px 20px; /* เพิ่ม padding ให้แต่ละ section */
+    min-height: 80vh; /* กำหนดความสูงขั้นต่ำให้แต่ละ section เพื่อให้เห็นการเลื่อน */
+    border-bottom: 1px solid #eee;
+}
+
+#home {
+    background-color: #f4f4f4;
+}
+
+#about {
+    background-color: #e2e2e2;
+}
+
+#services {
+    background-color: #cfcfcf;
+}
+
+#contact {
+    background-color: #bcbcbc;
+}
+
+h1, h2 {
+    color: #333;
+}
+
+footer {
+    text-align: center;
+    padding: 20px;
+    background-color: #333;
+    color: white;
+}
