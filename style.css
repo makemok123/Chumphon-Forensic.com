@@ -7,7 +7,7 @@ body {
 }
 
 header {
-    background-color: #333;
+    background-color: rgb(33, 196, 250); /* เปลี่ยนสีพื้นหลังเป็นสีฟ้าอ่อน */
     color: white;
     padding: 0.5em 20px; /* ปรับ padding ให้เหมาะสม */
     /* text-align: center;  เอาออกเนื่องจากใช้ flexbox */
