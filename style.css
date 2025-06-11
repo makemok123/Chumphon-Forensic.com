@@ -9,26 +9,28 @@ body {
 header {
     background-color: rgb(33, 196, 250); /* เปลี่ยนสีพื้นหลังเป็นสีฟ้าอ่อน */
     color: white;
-    padding: 0.5em 20px; /* ปรับ padding ให้เหมาะสม */
-    /* text-align: center;  เอาออกเนื่องจากใช้ flexbox */
-    position: fixed; /* ทำให้ header อยู่กับที่ด้านบน */
+    padding: 15px 20px; /* Mobile-first padding */
+    position: static; /* Mobile-first: header not fixed */
     width: 100%;
     top: 0;
     z-index: 1000; /* ทำให้ header อยู่เหนือเนื้อหาอื่น */
     display: flex; /* เพิ่ม flexbox */
+    flex-direction: column; /* Mobile-first: stack branding and nav */
     align-items: center; /* จัดให้อยู่กึ่งกลางแนวตั้ง */
-    justify-content: space-between; /* จัดให้ branding อยู่ซ้าย และ nav อยู่ขวา */
+    /* justify-content: space-between; /* Will be restored for larger screens */
     box-sizing: border-box; /* เพิ่มเพื่อให้ padding ไม่ทำให้ width เกิน 100% */
 }
 
 .header-branding { /* สไตล์สำหรับกลุ่มโลโก้และข้อความ */
     display: flex;
+    flex-direction: column; /* Mobile-first: stack logo and title */
     align-items: center;
 }
 
 .header-logo { /* สไตล์สำหรับโลโก้ */
     height: 40px; /* กำหนดความสูงของโลโก้ตามต้องการ */
     margin-right: 10px; /* ระยะห่างระหว่างโลโก้กับข้อความ */
+    margin-bottom: 10px; /* Mobile-first: space below logo when stacked */
 }
 
 .header-title { /* สไตล์สำหรับข้อความชื่อ */
@@ -37,18 +39,24 @@ header {
     color: white; /* ทำให้ข้อความมองเห็นบนพื้นหลังสีเข้ม */
 }
 
+nav {
+    width: 100%; /* Mobile-first: nav takes full width */
+    margin-top: 15px; /* Mobile-first: space between branding and nav */
+}
+
 nav ul {
     list-style-type: none;
     padding: 0;
     margin: 0;
-    text-align: center; /* ยังคงให้ li อยู่ตรงกลางภายใน nav */
+    text-align: center;
 }
 
 nav ul li {
-    display: inline;
-    margin-right: 20px;
+    display: block; /* Mobile-first: menu items as blocks */
+    margin-right: 0;
+    padding: 10px 0; /* Mobile-first: padding for touch targets */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2); /* Mobile-first: separator */
 }
-
 nav ul li a {
     color: white;
     text-decoration: none;
@@ -56,16 +64,15 @@ nav ul li a {
 }
 
 nav ul li:last-child { /* เอา margin-right ของ li สุดท้ายออก */
-    margin-right: 0;
+    border-bottom: none; /* Mobile-first: remove border from last item */
 }
 
 nav ul li a:hover {
     text-decoration: underline;
 }
 
-/* เพิ่ม padding-top ให้ main เพื่อไม่ให้เนื้อหาถูก header บัง */
 main {
-    padding-top: 56px; /* ปรับให้ตรงกับความสูงของ header (โลโก้ 40px + padding บนล่าง 0.5em*2) */
+    padding-top: 20px; /* Mobile-first: padding for main content when header is static */
 }
 
 section {
@@ -77,11 +84,12 @@ section {
 
 #home {
     background-color: #f4f4f4; /* สีพื้นหลังเดิม */
-    display: flex; /* เปิดใช้งาน Flexbox */
-    justify-content: space-between; /* จัดช่องว่างระหว่างส่วนซ้ายและขวา */
-    align-items: flex-start; /* จัดให้ส่วนต่างๆ ชิดด้านบน */
-    gap: 30px; /* ระยะห่างระหว่างส่วนซ้ายและขวา */
-    padding-top: 60px; /* กำหนด padding-top เฉพาะสำหรับ #home เป็น 10px */
+    display: flex;
+    flex-direction: column; /* Mobile-first: stack content */
+    align-items: center; /* Mobile-first: center items */
+    gap: 20px; /* Mobile-first: gap between items */
+    padding-top: 40px; /* Adjusted padding */
+    text-align: center; /* Mobile-first: center text */
 }
 
 #about {
@@ -98,14 +106,14 @@ section {
 
 /* Styles for #home section content */
 .home-main-content {
-    flex: 2; /* ให้ส่วนเนื้อหาหลักใช้พื้นที่มากกว่า */
-    /* สามารถเพิ่ม padding-right ถ้าต้องการระยะห่างเพิ่มเติม */
+    flex: 1; /* Mobile-first: allow shrinking/growing */
+    width: 100%;
 }
 
 .home-commander-section {
-    flex: 1; /* ให้ส่วนรูปผู้บังคับบัญชาใช้พื้นที่น้อยกว่า */
+    flex: 1; /* Mobile-first: allow shrinking/growing */
+    width: 100%;
     text-align: center; /* จัดเนื้อหาในส่วนนี้ให้อยู่กึ่งกลาง */
-    /* padding-top: 20px; เอาออกเพื่อให้หัวข้อจัดตำแหน่งกับ h1 ด้านซ้าย */
 }
 
 .home-commander-section h2 {
@@ -138,8 +146,7 @@ section {
     display: block; /* ทำให้โลโก้เป็น block element เพื่อให้ margin auto ทำงาน */
     max-width: 190px; /* ขยายขนาดเป็น 2 เท่า */
     height: auto; /* รักษาสัดส่วนของรูปภาพ */
-    margin-top: 10px; /* ระยะห่างด้านบนของโลโก้ */
-    margin-left: 0; /* จัดชิดซ้าย (ภายใน container ของมัน) */
+    margin: 10px auto; /* Mobile-first: center logo */
 }
 
 h1, h2 {
@@ -211,3 +218,83 @@ footer {
 .animatable-content.delay-2 { transition-delay: 0.4s; }
 .animatable-content.delay-3 { transition-delay: 0.5s; }
 /* --- End of added styles --- */
+
+/* === Media Queries สำหรับ Responsive === */
+
+/* --- สำหรับแท็บเล็ต (หน้าจอกว้าง 768px ขึ้นไป) --- */
+@media (min-width: 768px) {
+    header {
+        position: fixed; /* Restore fixed header */
+        flex-direction: row;
+        justify-content: space-between;
+        padding: 0.5em 20px; /* Restore original padding */
+    }
+
+    .header-branding {
+        flex-direction: row; /* Restore horizontal branding */
+        text-align: left;
+    }
+
+    .header-logo {
+        margin-right: 10px; /* Restore original margin */
+        margin-bottom: 0; /* Remove mobile margin-bottom */
+    }
+
+    nav {
+        width: auto; /* Restore auto width */
+        margin-top: 0; /* Remove mobile margin-top */
+    }
+
+    nav ul li {
+        display: inline-block; /* Restore inline display for menu items */
+        padding: 0;
+        margin-right: 20px; /* Restore original margin */
+        border-bottom: none; /* Remove mobile border */
+    }
+
+    nav ul li:last-child {
+        margin-right: 0;
+    }
+
+    main {
+        padding-top: 70px; /* Adjust padding for fixed header (header height ~56px) */
+    }
+
+    #home {
+        flex-direction: row; /* Restore side-by-side layout */
+        justify-content: space-between;
+        align-items: flex-start;
+        text-align: left; /* Restore left alignment for main content */
+        gap: 30px; /* Restore original gap */
+        padding-top: 60px; /* Restore original padding */
+    }
+
+    .home-main-content {
+        flex: 2; /* Restore original flex ratio */
+        text-align: left;
+    }
+     .rtp-logo {
+        margin: 10px 0; /* Adjust logo margin for left alignment */
+    }
+
+    .home-commander-section {
+        flex: 1; /* Restore original flex ratio */
+        text-align: center;
+    }
+}
+
+/* --- สำหรับคอมพิวเตอร์ (หน้าจอกว้าง 1024px ขึ้นไป) --- */
+@media (min-width: 1024px) {
+    header .header-title {
+        font-size: 1.8em; /* ขยายขนาดชื่อเว็บเล็กน้อย */
+    }
+
+    #home .home-main-content {
+        flex-basis: 60%; /* กำหนดสัดส่วนความกว้าง */
+    }
+
+    #home .home-commander-section {
+        flex-basis: 35%; /* กำหนดสัดส่วนความกว้าง */
+        margin-top: 0;
+    }
+}
