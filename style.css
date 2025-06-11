@@ -354,16 +354,7 @@ footer {
 
     /* Desktop Accordion: Revert to non-sticky, side-by-side layout */
     .accordion-with-controls {
-        flex-direction: row; /* Button and accordion side-by-side */
-        align-items: flex-start; /* Align to top */
-        position: static; /* Not sticky */
-        top: auto;
-        z-index: auto;
-        background-color: transparent; /* No special background */
-        width: fit-content; /* Wrap content */
-        padding: 0; /* No special padding for the container */
-        box-shadow: none; /* No shadow */
-        margin: 40px auto; /* Center the block */
+        display: none; /* Hide the accordion and its controls on larger desktop screens */
     }
 
     .accordion-with-controls .accordion-collapse-trigger {
