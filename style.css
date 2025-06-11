@@ -297,7 +297,7 @@ footer {
   Mobile and Tablet styles (up to 1023px) are now primarily handled by the base styles (mobile-first).
   The media query below is for Desktop (1024px and wider).
 */
-@media (min-width: 1024px) {
+@media (min-width: 1280px) {
     html {
         font-size: 200%; /* Restore larger font size for desktop */
     }
