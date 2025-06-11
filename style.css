@@ -133,6 +133,15 @@ section {
     line-height: 1.4; /* ปรับระยะห่างระหว่างบรรทัดของคำอธิบาย */
 }
 
+/* Styles for the Royal Thai Police logo */
+.rtp-logo {
+    display: block; /* ทำให้โลโก้เป็น block element เพื่อให้ margin auto ทำงาน */
+    max-width: 230px; /* ขยายขนาดเป็น 2 เท่า */
+    height: auto; /* รักษาสัดส่วนของรูปภาพ */
+    margin-top: 10px; /* ระยะห่างด้านบนของโลโก้ */
+    margin-left: 0; /* จัดชิดซ้าย (ภายใน container ของมัน) */
+}
+
 h1, h2 {
     color: #333;
 }
